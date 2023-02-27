@@ -1,2 +1,6 @@
 ---
 # handlers file for vmagent
+- name: Restart VMagent service
+  service:
+    name: vic-vmagent
+    state: restarted
