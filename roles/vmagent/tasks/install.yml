@@ -1,1 +1,38 @@
+- name: Create VMagent system group
+  group:
+    name: "{{ vmagent_system_group }}"
+    state: present
+    system: true
 
+- name: Create VMagent system user
+  user:
+    name: "{{ vmagent_system_user }}"
+    groups: "{{ vmagent_system_group }}"
+    append: true
+    shell: /usr/sbin/nologin
+    system: true
+    createhome: false
+ 
+- name: Download binary VMagent
+  get_url:
+    url: "{{ vmagent_download_url }}"
+    dest: /tmp
+
+- name: Download and install Zip
+  package:
+    name: zip
+    state: present
+  
+ - name: Unarchive VMagent
+   unarchive:
+     src: "/tmp/{{ vmagent_prod_tar }}"
+     dest: /tmp
+     remote_src: yes
+    
+  - name: Copy VMagent
+    copy:
+     src: /tmp/{{ vmagent_binary }}
+     dest: "/usr/local/bin/{{ vmagent_binary }}"
+     mode: 0751
+     owner: "{{ vmagent_system_user }}"
+     group: "{{ vmagent_system_group }}"
