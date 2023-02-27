@@ -1,0 +1,35 @@
+- hosts: alertmanager-servers
+  roles:
+    - alertmanager
+  tags:
+    - alertmanager
+
+- hosts: vmagent-servers
+  roles:
+    - vmagent
+  tags: 
+    - vmagent
+
+- hosts: vmalert-servers
+  roles:
+    - vmalert
+  tags: 
+    - vmalert
+
+- hosts: vminsert-servers
+  roles:
+    - vminsert
+  tags: 
+    - vminsert
+	
+- hosts: vmselect-servers
+  roles:
+    - vmselect
+  tags: 
+    - vmselect
+	
+- hosts: vmstorage-servers
+  roles:
+    - vmstorage
+  tags: 
+    - vmstorage
