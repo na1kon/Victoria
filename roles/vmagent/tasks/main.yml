@@ -1,2 +1,4 @@
 ---
 # tasks file for vmagent
+- import_tasks: install.yml
+- import_tasks: config.yml
