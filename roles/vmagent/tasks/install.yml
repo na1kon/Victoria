@@ -31,7 +31,7 @@
     
   - name: Copy VMagent
     copy:
-     src: /tmp/{{ vmagent_binary }}
+     src: "/tmp/{{ vmagent_binary }}"
      dest: "/usr/local/bin/{{ vmagent_binary }}"
      mode: 0751
      owner: "{{ vmagent_system_user }}"
